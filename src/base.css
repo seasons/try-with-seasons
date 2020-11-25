@@ -1,3 +1,7 @@
+body {
+  margin: 0px;
+}
+
 @font-face {
   font-family: "Apercu-Mono";
   src: url("http://localhost:3000/fonts/apercu_mono-webfont.woff2")

@@ -15,24 +15,80 @@
   <body>
     <h1>Try With Seasons Widget - Development</h1>
 
-    <div id="container-text-button-dark"></div>
+    <!-- Text Buttons -->
+    <h3>Text Buttons</h3>
+    <div id="container-text-button-dark" style="padding: 12px;"></div>
     <div
       id="container-text-button-light"
-      style="background-color: green;"
+      style="background-color: green; padding: 12px;"
+    ></div>
+
+    <!-- Outline Buttons -->
+    <h3>Outline Buttons</h3>
+    <div id="container-outline-button-dark" style="padding: 12px;"></div>
+    <div
+      id="container-outline-button-light"
+      style="background-color: green; padding: 12px;"
+    ></div>
+
+    <!-- Solid Buttons -->
+    <h3>Solid Buttons</h3>
+    <div id="container-solid-button-dark" style="padding: 12px;"></div>
+    <div
+      id="container-solid-button-light"
+      style="background-color: green; padding: 12px;"
+    ></div>
+    <div
+      id="container-solid-button-blur"
+      style="background-color: green; padding: 12px;"
     ></div>
 
     <!-- Mocking how a client would call our script. -->
     <script>
+      // Text Buttons
       TryWithSeasons.render({
         containerElement: document.getElementById("container-text-button-dark"),
         type: TryWithSeasons.WidgetType.TEXT_BUTTON_DARK,
       });
-
       TryWithSeasons.render({
         containerElement: document.getElementById(
           "container-text-button-light"
         ),
         type: TryWithSeasons.WidgetType.TEXT_BUTTON_LIGHT,
+      });
+
+      // Outline Buttons 
+      TryWithSeasons.render({
+        containerElement: document.getElementById(
+          "container-outline-button-light"
+        ),
+        type: TryWithSeasons.WidgetType.OUTLINE_BUTTON_LIGHT,
+      });
+      TryWithSeasons.render({
+        containerElement: document.getElementById(
+          "container-outline-button-dark"
+        ),
+        type: TryWithSeasons.WidgetType.OUTLINE_BUTTON_DARK,
+      });
+
+      // Solid Buttons
+      TryWithSeasons.render({
+        containerElement: document.getElementById(
+          "container-solid-button-dark"
+        ),
+        type: TryWithSeasons.WidgetType.SOLID_BUTTON_DARK,
+      });
+      TryWithSeasons.render({
+        containerElement: document.getElementById(
+          "container-solid-button-light"
+        ),
+        type: TryWithSeasons.WidgetType.SOLID_BUTTON_LIGHT,
+      });
+      TryWithSeasons.render({
+        containerElement: document.getElementById(
+          "container-solid-button-blur"
+        ),
+        type: TryWithSeasons.WidgetType.SOLID_BUTTON_BLUR,
       });
     </script>
   </body>

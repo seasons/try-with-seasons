@@ -6,17 +6,25 @@
  */
 
 const PRIMARY_ACTION_CLICKED = "SEASONS_PRIMARY_ACTION_CLICKED";
+const ROOT_SIZE = "SEASONS_ROOT_SIZE";
 
-const primaryAction = document.getElementById("primary-action");
-
-if (primaryAction) {
-  primaryAction.addEventListener("click", () => {
-    window.parent.postMessage(PRIMARY_ACTION_CLICKED, "*");
-
-    console.log("[TryWithSeasons] sending event: PRIMARY_ACTION_CLICKED");
-  });
-} else {
-  console.warn(
-    "[TryWithSeasons] Expected #primary-action to attach click listener, but found none."
+const rootElement = document.getElementById("primary-action");
+if (rootElement) {
+  window.parent.postMessage(
+    {
+      type: ROOT_SIZE,
+      data: {
+        width: rootElement.offsetWidth,
+        height: rootElement.offsetHeight,
+      },
+    },
+    "*"
   );
+}
+
+const primaryActionElement = document.getElementById("primary-action");
+if (primaryActionElement) {
+  primaryActionElement.addEventListener("click", () => {
+    window.parent.postMessage({ type: PRIMARY_ACTION_CLICKED }, "*");
+  });
 }

@@ -7,8 +7,10 @@
 }
 .button {
   padding: 12px 20px;
-  background: none;
+  background-color: white;
   border: none;
+  border-radius: 2px;
+  color: black;
   cursor: pointer;
 }
 .button:focus {
