@@ -11,6 +11,7 @@ enum WidgetType {
   SOLID_BUTTON_LIGHT = "SOLID_BUTTON_LIGHT",
   SOLID_BUTTON_DARK = "SOLID_BUTTON_DARK",
   SOLID_BUTTON_BLUR = "SOLID_BUTTON_BLUR",
+  CTA_LIGHT = "CTA_LIGHT",
 }
 
 enum FrameEvent {
@@ -47,6 +48,10 @@ const widgets = {
     html: require("./components/solid-button/index.html"),
     css: require("./components/solid-button/blur.css"),
   },
+  [WidgetType.CTA_LIGHT]: {
+    html: require("./components/cta/index.html"),
+    css: require("./components/cta/light.css"),
+  },
 };
 
 const frameMessageHandlers = {
@@ -82,7 +87,10 @@ const render = ({
     ["scrolling", "no"],
     ["tabindex", "0"],
     ["title", "Try With Seasons"],
-    ["style", "border: none !important; visibility: hidden !important;"],
+    [
+      "style",
+      "border: none !important; visibility: hidden !important; width:100% !important;",
+    ],
     [
       "srcdoc",
       `
@@ -112,6 +120,8 @@ const render = ({
       if ((ev.source as WindowProxy)?.frameElement !== iframe) {
         return;
       }
+
+      console.log("[TryWithSeasons] frame event: ", ev.data)
 
       if (frameMessageHandlers[ev.data.type]) {
         frameMessageHandlers[ev.data.type](iframe, ev.data.data);

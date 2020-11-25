@@ -8,8 +8,9 @@
 const PRIMARY_ACTION_CLICKED = "SEASONS_PRIMARY_ACTION_CLICKED";
 const ROOT_SIZE = "SEASONS_ROOT_SIZE";
 
-const rootElement = document.getElementById("primary-action");
+const rootElement = document.querySelector(".root") as HTMLElement | null;
 if (rootElement) {
+  console.log(rootElement.offsetWidth, rootElement.offsetHeight)
   window.parent.postMessage(
     {
       type: ROOT_SIZE,
