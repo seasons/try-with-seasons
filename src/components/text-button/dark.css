@@ -1,0 +1,15 @@
+.text-try-with {
+  font-size: 12px;
+}
+.text-seasons {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+.button {
+  padding: 12px 20px;
+  background: none;
+  border: none;
+}
+.button:focus {
+  outline: none;
+}

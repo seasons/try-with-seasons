@@ -1,0 +1,39 @@
+<!-- 
+  This template is a development aid to simulate how this package is used within the real-world.
+  This template is not included in the production build.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- Our script. -->
+    <script type="text/javascript" src="try-with-seasons.js"></script>
+  </head>
+  <body>
+    <h1>Try With Seasons Widget - Development</h1>
+
+    <div id="container-text-button-dark"></div>
+    <div
+      id="container-text-button-light"
+      style="background-color: green;"
+    ></div>
+
+    <!-- Mocking how a client would call our script. -->
+    <script>
+      TryWithSeasons.render({
+        containerElement: document.getElementById("container-text-button-dark"),
+        type: TryWithSeasons.WidgetType.TEXT_BUTTON_DARK,
+      });
+
+      TryWithSeasons.render({
+        containerElement: document.getElementById(
+          "container-text-button-light"
+        ),
+        type: TryWithSeasons.WidgetType.TEXT_BUTTON_LIGHT,
+      });
+    </script>
+  </body>
+</html>
