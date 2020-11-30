@@ -44,10 +44,12 @@
     ></div>
 
     <!-- CTAs -->
+    <h3>CTAs</h3>
     <div
       id="container-cta-light"
-      style="background-color: green; padding: 12px"
+      style="background-color: green; padding: 12px;"
     ></div>
+    <div id="container-cta-dark" style="padding: 12px;"></div>
 
     <!-- Mocking how a client would call our script. -->
     <script>
@@ -63,7 +65,7 @@
         type: TryWithSeasons.WidgetType.TEXT_BUTTON_LIGHT,
       });
 
-      // Outline Buttons 
+      // Outline Buttons
       TryWithSeasons.render({
         containerElement: document.getElementById(
           "container-outline-button-light"
@@ -99,10 +101,12 @@
 
       // CTAs
       TryWithSeasons.render({
-        containerElement: document.getElementById(
-          "container-cta-light"
-        ),
+        containerElement: document.getElementById("container-cta-light"),
         type: TryWithSeasons.WidgetType.CTA_LIGHT,
+      });
+      TryWithSeasons.render({
+        containerElement: document.getElementById("container-cta-dark"),
+        type: TryWithSeasons.WidgetType.CTA_DARK,
       });
     </script>
   </body>

@@ -2,85 +2,94 @@
 import baseCss from "./base.css";
 // @ts-ignore
 import iframeScript from "raw-loader!./iframe";
+import {
+  WidgetType,
+  FrameEvent,
+  RenderConfig,
+  FrameEventHandler,
+  FrameEventDataRootSize,
+} from "./types";
+import { parse as parseStructuredData } from "./product-detail-parsers/structured-data";
 
-enum WidgetType {
-  TEXT_BUTTON_LIGHT = "TEXT_BUTTON_LIGHT",
-  TEXT_BUTTON_DARK = "TEXT_BUTTON_DARK",
-  OUTLINE_BUTTON_LIGHT = "OUTLINE_BUTTON_LIGHT",
-  OUTLINE_BUTTON_DARK = "OUTLINE_BUTTON_DARK",
-  SOLID_BUTTON_LIGHT = "SOLID_BUTTON_LIGHT",
-  SOLID_BUTTON_DARK = "SOLID_BUTTON_DARK",
-  SOLID_BUTTON_BLUR = "SOLID_BUTTON_BLUR",
-  CTA_LIGHT = "CTA_LIGHT",
-}
-
-enum FrameEvent {
-  PRIMARY_ACTION_CLICKED = "SEASONS_PRIMARY_ACTION_CLICKED",
-  ROOT_SIZE = "SEASONS_ROOT_SIZE",
-}
+const DEFAULT_PRODUCT_DETAILS = {
+  name: "piece",
+  seasonsProductUrl: "https://wearseasons.com",
+};
 
 const widgets = {
   [WidgetType.TEXT_BUTTON_LIGHT]: {
-    html: require("./components/text-button/index.html"),
-    css: require("./components/text-button/light.css"),
+    html: require("./components/button/index.html"),
+    css: require("./components/button/text-light.css"),
   },
   [WidgetType.TEXT_BUTTON_DARK]: {
-    html: require("./components/text-button/index.html"),
-    css: require("./components/text-button/dark.css"),
+    html: require("./components/button/index.html"),
+    css: require("./components/button/text-dark.css"),
   },
   [WidgetType.OUTLINE_BUTTON_LIGHT]: {
-    html: require("./components/outline-button/index.html"),
-    css: require("./components/outline-button/light.css"),
+    html: require("./components/button/index.html"),
+    css: require("./components/button/outline-light.css"),
   },
   [WidgetType.OUTLINE_BUTTON_DARK]: {
-    html: require("./components/outline-button/index.html"),
-    css: require("./components/outline-button/dark.css"),
+    html: require("./components/button/index.html"),
+    css: require("./components/button/outline-dark.css"),
   },
   [WidgetType.SOLID_BUTTON_LIGHT]: {
-    html: require("./components/solid-button/index.html"),
-    css: require("./components/solid-button/light.css"),
+    html: require("./components/button/index.html"),
+    css: require("./components/button/solid-light.css"),
   },
   [WidgetType.SOLID_BUTTON_DARK]: {
-    html: require("./components/solid-button/index.html"),
-    css: require("./components/solid-button/dark.css"),
+    html: require("./components/button/index.html"),
+    css: require("./components/button/solid-dark.css"),
   },
   [WidgetType.SOLID_BUTTON_BLUR]: {
-    html: require("./components/solid-button/index.html"),
-    css: require("./components/solid-button/blur.css"),
+    html: require("./components/button/index.html"),
+    css: require("./components/button/solid-blur.css"),
   },
   [WidgetType.CTA_LIGHT]: {
     html: require("./components/cta/index.html"),
     css: require("./components/cta/light.css"),
   },
+  [WidgetType.CTA_DARK]: {
+    html: require("./components/cta/index.html"),
+    css: require("./components/cta/dark.css"),
+  },
+};
+
+const compileWidget = ({
+  html,
+  variables,
+}: {
+  html: string;
+  variables: { [key: string]: string };
+}): string => {
+  return Object.entries(variables).reduce((memo, [key, value]) => {
+    return memo.replace(new RegExp("\\${" + key + "}"), value);
+  }, html);
 };
 
 const frameMessageHandlers = {
-  [FrameEvent.PRIMARY_ACTION_CLICKED]: () => {
-    if (process.env.NODE_ENV !== "production") {
-      console.log("[TryWithSeasons] handling event: PRIMARY_ACTION_CLICKED");
-    }
-
-    // FIXME: navigate to product using json-ld data
-    // window.location.href = "https://wearseasons.com";
-  },
-  [FrameEvent.ROOT_SIZE]: (
-    iframe: HTMLIFrameElement,
-    data: { width: number; height: number }
-  ) => {
-    iframe.style.height = `${data.height + 1}px`;
-    iframe.style.width = `${data.width + 1}px`;
+  [FrameEvent.ROOT_SIZE]: ({
+    iframe,
+    data: { width, height },
+  }: FrameEventHandler<FrameEventDataRootSize>) => {
+    iframe.style.height = `${height + 1}px`;
+    iframe.style.width = `${width + 1}px`;
     iframe.style.visibility = "visible";
   },
 };
 
-const render = ({
-  containerElement,
-  type,
-}: {
-  containerElement: Element;
-  type: WidgetType;
-}) => {
+const render = ({ containerElement, type, productDetails }: RenderConfig) => {
+  const { name, seasonsProductUrl } = Object.assign(
+    DEFAULT_PRODUCT_DETAILS,
+    productDetails || parseStructuredData() || {}
+  );
   const { html, css } = widgets[type];
+
+  const compiledHtml = compileWidget({
+    html,
+    variables: { name, seasonsProductUrl },
+  });
+
   const iframeAttributes = [
     ["allowtransparency", "true"],
     ["frameborder", "0"],
@@ -102,7 +111,7 @@ const render = ({
           </style>
         </head>
         <body>
-          ${html}
+          ${compiledHtml}
           <script type="text/javascript">
             ${iframeScript}
           </script>
@@ -120,13 +129,14 @@ const render = ({
       if ((ev.source as WindowProxy)?.frameElement !== iframe) {
         return;
       }
-
-      console.log("[TryWithSeasons] frame event: ", ev.data)
+      if (process.env.NODE_ENV !== "production") {
+        console.log("[TryWithSeasons] frame event: ", ev.data);
+      }
 
       if (frameMessageHandlers[ev.data.type]) {
-        frameMessageHandlers[ev.data.type](iframe, ev.data.data);
+        frameMessageHandlers[ev.data.type]({ iframe, data: ev.data.data });
       } else if (process.env.NODE_ENV !== "production") {
-        console.warn("[TryWithSeasons] unhandled iframe event: " + ev);
+        console.warn("[TryWithSeasons] unhandled frame event: " + ev);
       }
     }
   );
