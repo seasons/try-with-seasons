@@ -1,7 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
 
-const SRC_DIR = path.resolve(__dirname, "src");
+// webpack entry is tsc outdir
+const SRC_DIR = path.resolve(__dirname, "build");
+
 const OUTPUT_PATH = path.resolve(__dirname, "dist");
 
 module.exports = {

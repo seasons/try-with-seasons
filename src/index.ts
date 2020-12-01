@@ -1,5 +1,5 @@
 // @ts-ignore
-import baseCss from "./base.css";
+import baseCss from "./static/base.css";
 // @ts-ignore
 import iframeScript from "raw-loader!./iframe";
 import {
@@ -14,40 +14,40 @@ import { parse as parseStructuredData } from "./product-detail-parsers/structure
 
 const widgets = {
   [WidgetType.TEXT_BUTTON_LIGHT]: {
-    html: require("./components/button/index.html"),
-    css: require("./components/button/text-light.css"),
+    html: require("./static/components/button/index.html"),
+    css: require("./static/components/button/text-light.css"),
   },
   [WidgetType.TEXT_BUTTON_DARK]: {
-    html: require("./components/button/index.html"),
-    css: require("./components/button/text-dark.css"),
+    html: require("./static/components/button/index.html"),
+    css: require("./static/components/button/text-dark.css"),
   },
   [WidgetType.OUTLINE_BUTTON_LIGHT]: {
-    html: require("./components/button/index.html"),
-    css: require("./components/button/outline-light.css"),
+    html: require("./static/components/button/index.html"),
+    css: require("./static/components/button/outline-light.css"),
   },
   [WidgetType.OUTLINE_BUTTON_DARK]: {
-    html: require("./components/button/index.html"),
-    css: require("./components/button/outline-dark.css"),
+    html: require("./static/components/button/index.html"),
+    css: require("./static/components/button/outline-dark.css"),
   },
   [WidgetType.SOLID_BUTTON_LIGHT]: {
-    html: require("./components/button/index.html"),
-    css: require("./components/button/solid-light.css"),
+    html: require("./static/components/button/index.html"),
+    css: require("./static/components/button/solid-light.css"),
   },
   [WidgetType.SOLID_BUTTON_DARK]: {
-    html: require("./components/button/index.html"),
-    css: require("./components/button/solid-dark.css"),
+    html: require("./static/components/button/index.html"),
+    css: require("./static/components/button/solid-dark.css"),
   },
   [WidgetType.SOLID_BUTTON_BLUR]: {
-    html: require("./components/button/index.html"),
-    css: require("./components/button/solid-blur.css"),
+    html: require("./static/components/button/index.html"),
+    css: require("./static/components/button/solid-blur.css"),
   },
   [WidgetType.CTA_LIGHT]: {
-    html: require("./components/cta/index.html"),
-    css: require("./components/cta/light.css"),
+    html: require("./static/components/cta/index.html"),
+    css: require("./static/components/cta/light.css"),
   },
   [WidgetType.CTA_DARK]: {
-    html: require("./components/cta/index.html"),
-    css: require("./components/cta/dark.css"),
+    html: require("./static/components/cta/index.html"),
+    css: require("./static/components/cta/dark.css"),
   },
 };
 
