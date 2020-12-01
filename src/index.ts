@@ -9,12 +9,8 @@ import {
   FrameEventHandler,
   FrameEventDataRootSize,
 } from "./types";
-import { parse as parseStructuredData } from "./product-detail-parsers/structured-data";
 
-const DEFAULT_PRODUCT_DETAILS = {
-  name: "piece",
-  seasonsProductUrl: "https://wearseasons.com",
-};
+import { parse as parseStructuredData } from "./product-detail-parsers/structured-data";
 
 const widgets = {
   [WidgetType.TEXT_BUTTON_LIGHT]: {
@@ -78,16 +74,28 @@ const frameMessageHandlers = {
   },
 };
 
-const render = ({ containerElement, type, productDetails }: RenderConfig) => {
-  const { name, seasonsProductUrl } = Object.assign(
-    DEFAULT_PRODUCT_DETAILS,
-    productDetails || parseStructuredData() || {}
-  );
+const render = async ({
+  containerElement,
+  type,
+  productDetails,
+}: RenderConfig) => {
+  const parsedProductDetails = productDetails
+    ? productDetails
+    : await parseStructuredData();
+  if (!parsedProductDetails) {
+    if (process.env.NODE_ENV !== "production") {
+      console.warn(
+        "[TryWithSeasons] Could not find product details, exiting without rendering."
+      );
+    }
+    return;
+  }
+
   const { html, css } = widgets[type];
 
   const compiledHtml = compileWidget({
     html,
-    variables: { name, seasonsProductUrl },
+    variables: parsedProductDetails,
   });
 
   const iframeAttributes = [

@@ -29,5 +29,11 @@ module.exports = {
       },
     ],
   },
-  plugins: [new webpack.EnvironmentPlugin({ NODE_ENV: "development" })],
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: "development",
+      MONSOON_ORIGIN: "http://localhost:4000",
+      HARVEST_ORIGIN: "http://localhost:3000",
+    }),
+  ],
 };
