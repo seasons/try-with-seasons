@@ -79,9 +79,11 @@ const render = async ({
   type,
   productDetails,
 }: RenderConfig) => {
+
   const parsedProductDetails = productDetails
     ? productDetails
     : await parseStructuredData();
+
   if (!parsedProductDetails) {
     if (process.env.NODE_ENV !== "production") {
       console.warn(
@@ -95,7 +97,10 @@ const render = async ({
 
   const compiledHtml = compileWidget({
     html,
-    variables: parsedProductDetails,
+    variables: {
+      ...parsedProductDetails,
+      seasonsHomeUrl: process.env.FLARE_ORIGIN as string,
+    },
   });
 
   const iframeAttributes = [

@@ -35,7 +35,7 @@ module.exports = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: "development",
       MONSOON_ORIGIN: "http://localhost:4000",
-      HARVEST_ORIGIN: "http://localhost:3000",
+      FLARE_ORIGIN: "http://localhost:3000",
     }),
   ],
 };

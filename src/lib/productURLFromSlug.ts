@@ -1,2 +1,2 @@
 export const productURLFromSlug = (slug: string) =>
-  `${process.env.HARVEST_ORIGIN}/product/${slug}`;
+  `${process.env.FLARE_ORIGIN}/product/${slug}`;

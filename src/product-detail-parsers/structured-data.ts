@@ -39,9 +39,8 @@ export const parse = async (): Promise<ProductDetails | null> => {
       name,
       seasonsProductUrl: productURLFromSlug(availableProduct.slug),
     };
-  } catch (_ex) {
-    /** noop **/
+  } catch (ex) {
+    console.error(ex)
+    return null;
   }
-
-  return null;
 };
