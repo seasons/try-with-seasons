@@ -68,8 +68,8 @@ const frameMessageHandlers = {
     iframe,
     data: { width, height },
   }: FrameEventHandler<FrameEventDataRootSize>) => {
-    iframe.style.height = `${height + 1}px`;
-    iframe.style.width = `${width + 1}px`;
+    iframe.style.height = String(height + 1) + "px";
+    iframe.style.width = String(width + 1) + "px";
     iframe.style.visibility = "visible";
   },
 };
@@ -79,7 +79,6 @@ const render = async ({
   type,
   productDetails,
 }: RenderConfig) => {
-
   const parsedProductDetails = productDetails
     ? productDetails
     : await parseStructuredData();

@@ -9,7 +9,6 @@ const ROOT_SIZE = "SEASONS_ROOT_SIZE";
 
 const rootElement = document.getElementById("root") as HTMLElement | null;
 if (rootElement) {
-  console.log(rootElement.offsetWidth, rootElement.offsetHeight);
   window.parent.postMessage(
     {
       type: ROOT_SIZE,
