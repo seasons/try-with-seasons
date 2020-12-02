@@ -35,7 +35,7 @@ If product details can not be resolved, or if the corresponding product can not 
 Right now, Shopify support requires manual integration into the site theme. As an example, we can walkthrough including the script into the demo [Seasons Shopify](https://seasons-nyc.myshopify.com/admin).
 
 1. Navigate to the [Theme code editor](https://seasons-nyc.myshopify.com/admin/themes/74994286652), found by looking in the left-hand navigation, "SALES CHANNELS" -> "Online Store" -> "Themes" -> "Actions" -> "Edit code"
-2. Within `Templates/product-template.liquid`, add a `<div />` to render the widget:
+2. Within `Templates/product-template.liquid`, add a `<div />` that will serve as the `containerElement` for the widget:
 
 ![screenshot-1](screenshots/screenshot-1.png)
 
