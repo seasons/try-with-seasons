@@ -1,16 +1,19 @@
 {
-  "name": "try-with-seasons",
+  "name": "@seasons/try-with-seasons",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "concurrently -n \"tsc,webpack\" \"npm run tsc:watch\" \"npm run webpack:watch\"",
+    "start": "npm run build:clean && npm run static:build && concurrently -n \"tsc,webpack\" \"npm run tsc:watch\" \"npm run webpack:watch\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run tsc:build && npm run webpack:build",
+    "build:clean": "rm -rf build",
+    "build": "npm run static:build && npm run tsc:build && npm run webpack:build",
+    "build:production": "NODE_ENV=\"production\" MONSOON_ORIGIN=\"https://monsoon.seasons.nyc\" FLARE_ORIGIN=\"https://wearseasons.com\" npm run build",
     "tsc:build": "tsc",
     "tsc:watch": "tsc -w",
     "webpack:build": "webpack",
-    "webpack:watch": "webpack --watch"
+    "webpack:watch": "webpack --watch",
+    "static:build": "mkdir -p ./build/ && cp -r ./src/static ./build/static"
   },
   "author": "",
   "license": "ISC",

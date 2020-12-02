@@ -5,14 +5,16 @@
   text-transform: uppercase;
   font-size: 15px;
 }
-.button {
+#root {
   padding: 12px 20px;
   background-color: black;
   border: none;
   border-radius: 2px;
   color: white;
   cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
 }
-.button:focus {
+#root:focus {
   outline: none;
 }

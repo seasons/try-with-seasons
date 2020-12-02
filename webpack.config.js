@@ -1,7 +1,9 @@
 const path = require("path");
 const webpack = require("webpack");
 
-const SRC_DIR = path.resolve(__dirname, "src");
+// webpack entry is tsc outdir
+const SRC_DIR = path.resolve(__dirname, "build");
+
 const OUTPUT_PATH = path.resolve(__dirname, "dist");
 
 module.exports = {
@@ -29,5 +31,11 @@ module.exports = {
       },
     ],
   },
-  plugins: [new webpack.EnvironmentPlugin({ NODE_ENV: "development" })],
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: "development",
+      MONSOON_ORIGIN: "http://localhost:4000",
+      FLARE_ORIGIN: "http://localhost:3000",
+    }),
+  ],
 };

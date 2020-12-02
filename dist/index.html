@@ -9,6 +9,54 @@
     <meta charset="utf-8" />
     <title></title>
 
+    <!-- Sample structured data. -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org/",
+        "@type": "Product",
+        "name": "Taylor hand crochet board short",
+        "url": "https://seasons-nyc.myshopify.com/products/cali-striped-long-sleeve-tee-in",
+        "image": [
+          "https:\/\/cdn.shopify.com\/s\/files\/1\/0255\/3495\/5619\/products\/200716_Judy-Turner-Packshots41874_2048x.jpg?v=1605147107"
+        ],
+        "description": "Red Multi\n \n87% Merino Wool\n13% Polyamide\n",
+        "brand": {
+          "@type": "Thing",
+          "name": "Judy Turner"
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "availability": "http://schema.org/InStock",
+            "price": 1295.0,
+            "priceCurrency": "USD",
+            "url": "https:\/\/judy-turner.com\/products\/taylor-hand-crochet-board-short?variant=37535595364547"
+          },
+          {
+            "@type": "Offer",
+            "availability": "http://schema.org/InStock",
+            "price": 1295.0,
+            "priceCurrency": "USD",
+            "url": "https:\/\/judy-turner.com\/products\/taylor-hand-crochet-board-short?variant=37535595397315"
+          },
+          {
+            "@type": "Offer",
+            "availability": "http://schema.org/InStock",
+            "price": 1295.0,
+            "priceCurrency": "USD",
+            "url": "https:\/\/judy-turner.com\/products\/taylor-hand-crochet-board-short?variant=37535595430083"
+          },
+          {
+            "@type": "Offer",
+            "availability": "http://schema.org/InStock",
+            "price": 1295.0,
+            "priceCurrency": "USD",
+            "url": "https:\/\/judy-turner.com\/products\/taylor-hand-crochet-board-short?variant=37535595462851"
+          }
+        ]
+      }
+    </script>
+
     <!-- Our script. -->
     <script type="text/javascript" src="try-with-seasons.js"></script>
   </head>
@@ -44,10 +92,12 @@
     ></div>
 
     <!-- CTAs -->
+    <h3>CTAs</h3>
     <div
       id="container-cta-light"
-      style="background-color: green; padding: 12px"
+      style="background-color: green; padding: 12px;"
     ></div>
+    <div id="container-cta-dark" style="padding: 12px;"></div>
 
     <!-- Mocking how a client would call our script. -->
     <script>
@@ -63,7 +113,7 @@
         type: TryWithSeasons.WidgetType.TEXT_BUTTON_LIGHT,
       });
 
-      // Outline Buttons 
+      // Outline Buttons
       TryWithSeasons.render({
         containerElement: document.getElementById(
           "container-outline-button-light"
@@ -99,10 +149,12 @@
 
       // CTAs
       TryWithSeasons.render({
-        containerElement: document.getElementById(
-          "container-cta-light"
-        ),
+        containerElement: document.getElementById("container-cta-light"),
         type: TryWithSeasons.WidgetType.CTA_LIGHT,
+      });
+      TryWithSeasons.render({
+        containerElement: document.getElementById("container-cta-dark"),
+        type: TryWithSeasons.WidgetType.CTA_DARK,
       });
     </script>
   </body>
