@@ -2,7 +2,7 @@
   "name": "@seasons/try-with-seasons",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/try-with-seasons.js",
   "scripts": {
     "start": "npm run build:clean && npm run static:build && concurrently -n \"tsc,webpack\" \"npm run tsc:watch\" \"npm run webpack:watch\"",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,8 @@
     "tsc:watch": "tsc -w",
     "webpack:build": "webpack",
     "webpack:watch": "webpack --watch",
-    "static:build": "mkdir -p ./build/ && cp -r ./src/static ./build/static"
+    "static:build": "mkdir -p ./build/ && cp -r ./src/static ./build/static",
+    "publish": "npm run build:clean && npm run build:production && npm publish"
   },
   "author": "",
   "license": "ISC",
