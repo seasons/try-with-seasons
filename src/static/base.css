@@ -9,17 +9,18 @@ body {
 
 @font-face {
   font-family: "Apercu-Mono";
-  src: url("https://wearseasons.com/fonts/apercu_mono-webfont.woff2")
+  src: url("https://www.wearseasons.com/fonts/apercu_mono-webfont.woff2")
       format("woff2"),
-    url("https://wearseasons.com/fonts/apercu_mono-webfont.woff") format("woff");
+    url("https://www.wearseasons.com/fonts/apercu_mono-webfont.woff")
+      format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "ProximaNova-Medium";
-  src: url("https://wearseasons.com/fonts/proxima_nova_medium-webfont.woff2")
+  src: url("https://www.wearseasons.com/fonts/proxima_nova_medium-webfont.woff2")
       format("woff2"),
-    url("https://wearseasons.com/fonts/proxima_nova_medium-webfont.woff")
+    url("https://www.wearseasons.com/fonts/proxima_nova_medium-webfont.woff")
       format("woff");
   font-weight: normal;
   font-style: normal;
