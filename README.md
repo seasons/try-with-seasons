@@ -1,6 +1,6 @@
 # Try With Seasons
 
-A script that renders a Seasons widget on third-party brand partner site product pages to prompt users to try the product on Seasons.
+try-with-seasons.js is a script that renders a Seasons widget on third-party brand partner site product pages to prompt users to try the product on Seasons.
 
 ## Usage
 
@@ -10,21 +10,21 @@ You can include the widget as a script tag in your html, or via npm. Included be
 
 Include the script within the third-party site HTML:
 
-```html 
+```html
 <script type="text/javascript">
-  const script = document.createElement('script')
+  const script = document.createElement("script");
   script.onload = () => {
     TryWithSeasons.render({
-        containerElement: document.getElementById("try-with-seasons"),
-        type: TryWithSeasons.WidgetType.CTA_DARK,
+      containerElement: document.getElementById("try-with-seasons"),
+      type: TryWithSeasons.WidgetType.CTA_DARK,
     });
-  }
-  script.src = "https://wearseasons.com/try-with-seasons.js"
-  document.head.appendChild(script)
+  };
+  script.src = "https://wearseasons.com/try-with-seasons.js";
+  document.head.appendChild(script);
 </script>
 ```
 
-A variety of widget types are available for rendering: [WidgetType](./types.ts)
+A variety of widget types are available for rendering: [WidgetType](./src/types.ts)
 
 Optionally, an object of type `ProductDetails` may be passed to `TryWithSeasons.render`. If it is not included, product details are resolved according to the structured data included within the HTML.
 
@@ -47,3 +47,6 @@ Right now, Shopify support requires manual integration into the site theme. As a
 
 ![screenshot-3](screenshots/screenshot-3.png)
 
+### Seasons Metadata
+
+Seasons may need to update product metadata in order to establish the "link" between internal and external products. If you install the script correctly but do not see the widget render, contact Seasons about updating the metadata.

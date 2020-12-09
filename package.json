@@ -1,6 +1,6 @@
 {
   "name": "@seasons/try-with-seasons",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/try-with-seasons.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "build:clean": "rm -rf build",
     "build": "npm run static:build && npm run tsc:build && npm run webpack:build",
     "build:production": "NODE_ENV=\"production\" MONSOON_ORIGIN=\"https://monsoon.seasons.nyc\" FLARE_ORIGIN=\"https://wearseasons.com\" npm run build",
+    "build:staging": "NODE_ENV=\"production\" MONSOON_ORIGIN=\"https://monsoon-staging.seasons.nyc\" FLARE_ORIGIN=\"https://staging.wearseasons.com\" npm run build",
     "tsc:build": "tsc",
     "tsc:watch": "tsc -w",
     "webpack:build": "webpack",
