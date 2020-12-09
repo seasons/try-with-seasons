@@ -4,7 +4,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: 153px;
+  min-height: 153px;
 }
 
 .header {
@@ -14,7 +14,8 @@
 }
 
 .header-left {
-  padding: 8px 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   flex-shrink: 0;
   font-size: 15px;
   display: flex;
@@ -24,10 +25,13 @@
 
 .header-center {
   flex: 1;
-  padding: 15px 16px 11px 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   font-size: 12px;
   border-left: solid 1px white;
   border-right: solid 1px white;
+  display: flex;
+  align-items: center;
 }
 
 .header-right {

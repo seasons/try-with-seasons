@@ -1,20 +1,21 @@
 #root {
-  border: solid 1px black;
+  border: solid 1px #E5E5E5;
   color: black;
   display: flex;
   flex: 1;
   flex-direction: column;
-  height: 153px;
+  min-height: 153px;
 }
 
 .header {
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #E5E5E5;
   display: flex;
   flex-direction: row;
 }
 
 .header-left {
-  padding: 8px 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   flex-shrink: 0;
   font-size: 15px;
   display: flex;
@@ -24,10 +25,13 @@
 
 .header-center {
   flex: 1;
-  padding: 15px 16px 11px 16px;
+  padding-left: 16px;
+  padding-right: 16px;
   font-size: 12px;
-  border-left: solid 1px black;
-  border-right: solid 1px black;
+  border-left: solid 1px #E5E5E5;
+  border-right: solid 1px #E5E5E5;
+  display: flex;
+  align-items: center;
 }
 
 .header-right {
