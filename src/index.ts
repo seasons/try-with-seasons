@@ -59,7 +59,7 @@ const compileWidget = ({
   variables: { [key: string]: string };
 }): string => {
   return Object.entries(variables).reduce((memo, [key, value]) => {
-    return memo.replace(new RegExp("\\${" + key + "}"), value);
+    return memo.replace(new RegExp("\\${" + key + "}", "g"), value);
   }, html);
 };
 
