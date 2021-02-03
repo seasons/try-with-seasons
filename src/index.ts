@@ -8,9 +8,13 @@ import {
   RenderConfig,
   FrameEventHandler,
   FrameEventDataRootSize,
+  ParserType,
 } from "./types";
 
 import { parse as parseStructuredData } from "./product-detail-parsers/structured-data";
+import { parse as parseOpenGraphMeta } from "./product-detail-parsers/open-graph-meta";
+
+const productDetailParsers = [parseStructuredData, parseOpenGraphMeta];
 
 const widgets = {
   [WidgetType.TEXT_BUTTON_LIGHT]: {
@@ -78,10 +82,24 @@ const render = async ({
   containerElement,
   type,
   productDetails,
+  parser,
 }: RenderConfig) => {
-  const parsedProductDetails = productDetails
-    ? productDetails
-    : await parseStructuredData();
+  let parsedProductDetails;
+  if (productDetails) {
+    parsedProductDetails = productDetails;
+  } else if (parser && parser === ParserType.STRUCTURED_DATA) {
+    parsedProductDetails = await parseStructuredData();
+  } else if (parser && parser === ParserType.OPEN_GRAPH_META) {
+    parsedProductDetails = await parseOpenGraphMeta();
+  } else {
+    for (
+      let i = 0;
+      i < productDetailParsers.length && !parsedProductDetails;
+      i++
+    ) {
+      parsedProductDetails = await productDetailParsers[i]();
+    }
+  }
 
   if (!parsedProductDetails) {
     if (process.env.NODE_ENV !== "production") {
@@ -154,9 +172,11 @@ const render = async ({
   );
 
   containerElement.appendChild(iframe);
+  containerElement.classList.add("rendered");
 };
 
 export default {
   render,
   WidgetType,
+  ParserType
 };
