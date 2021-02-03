@@ -9,12 +9,22 @@
     <meta charset="utf-8" />
     <title></title>
 
+    <!-- Sample Facebook Open Graph Meta tags. -->
+    <meta
+      property="og:title"
+      content="Taylor hand crochet board short (OG Meta)"
+    />
+    <meta
+      property="og:url"
+      content="https://seasons-nyc.myshopify.com/products/cali-striped-long-sleeve-tee-in"
+    />
+
     <!-- Sample structured data. -->
     <script type="application/ld+json">
       {
         "@context": "http://schema.org/",
         "@type": "Product",
-        "name": "Taylor hand crochet board short",
+        "name": "Taylor hand crochet board short (Structured Data)",
         "url": "https://seasons-nyc.myshopify.com/products/cali-striped-long-sleeve-tee-in",
         "image": [
           "https:\/\/cdn.shopify.com\/s\/files\/1\/0255\/3495\/5619\/products\/200716_Judy-Turner-Packshots41874_2048x.jpg?v=1605147107"
@@ -65,39 +75,43 @@
 
     <!-- Text Buttons -->
     <h3>Text Buttons</h3>
-    <div id="container-text-button-dark" style="padding: 12px;"></div>
+    <div id="container-text-button-dark" style="padding: 12px"></div>
     <div
       id="container-text-button-light"
-      style="background-color: green; padding: 12px;"
+      style="background-color: green; padding: 12px"
     ></div>
 
     <!-- Outline Buttons -->
     <h3>Outline Buttons</h3>
-    <div id="container-outline-button-dark" style="padding: 12px;"></div>
+    <div id="container-outline-button-dark" style="padding: 12px"></div>
     <div
       id="container-outline-button-light"
-      style="background-color: green; padding: 12px;"
+      style="background-color: green; padding: 12px"
     ></div>
 
     <!-- Solid Buttons -->
     <h3>Solid Buttons</h3>
-    <div id="container-solid-button-dark" style="padding: 12px;"></div>
+    <div id="container-solid-button-dark" style="padding: 12px"></div>
     <div
       id="container-solid-button-light"
-      style="background-color: green; padding: 12px;"
+      style="background-color: green; padding: 12px"
     ></div>
     <div
       id="container-solid-button-blur"
-      style="background-color: green; padding: 12px;"
+      style="background-color: green; padding: 12px"
     ></div>
 
     <!-- CTAs -->
     <h3>CTAs</h3>
     <div
       id="container-cta-light"
-      style="background-color: green; padding: 12px;"
+      style="background-color: green; padding: 12px"
     ></div>
-    <div id="container-cta-dark" style="padding: 12px;"></div>
+    <div id="container-cta-dark" style="padding: 12px"></div>
+
+    <!-- FB OG Meta -->
+    <h3>FB OG Meta CTA</h3>
+    <div id="fb-og-meta-container-cta" style="padding: 12px"></div>
 
     <!-- Mocking how a client would call our script. -->
     <script>
@@ -155,6 +169,13 @@
       TryWithSeasons.render({
         containerElement: document.getElementById("container-cta-dark"),
         type: TryWithSeasons.WidgetType.CTA_DARK,
+      });
+
+      // OG Meta
+      TryWithSeasons.render({
+        containerElement: document.getElementById("fb-og-meta-container-cta"),
+        type: TryWithSeasons.WidgetType.CTA_DARK,
+        parser: TryWithSeasons.ParserType.OPEN_GRAPH_META,
       });
     </script>
   </body>

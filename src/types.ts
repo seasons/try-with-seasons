@@ -15,10 +15,16 @@ export enum WidgetType {
   CTA_DARK = "CTA_DARK",
 }
 
+export enum ParserType {
+  STRUCTURED_DATA = "STRUCTURED_DATA",
+  OPEN_GRAPH_META = "OPEN_GRAPH_META",
+}
+
 export type RenderConfig = {
   containerElement: Element;
   type: WidgetType;
   productDetails?: ProductDetails;
+  parser?: ParserType;
 };
 
 export enum FrameEvent {
